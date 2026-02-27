@@ -106,3 +106,26 @@ export function getPosts() {
 export function getPostBySlug(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
+
+export function getRelatedPosts(slug: string, limit = 2) {
+  const current = getPostBySlug(slug);
+  if (!current) {
+    return [];
+  }
+
+  return getPosts()
+    .filter((post) => post.slug !== current.slug)
+    .map((post) => {
+      const sharedTagCount = post.tags.filter((tag) =>
+        current.tags.includes(tag),
+      ).length;
+      const sameCategoryBonus = post.category === current.category ? 2 : 0;
+      return {
+        post,
+        score: sharedTagCount * 3 + sameCategoryBonus,
+      };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((item) => item.post);
+}

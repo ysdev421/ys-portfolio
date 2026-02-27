@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostBySlug, getPosts } from "@/lib/posts";
+import { getPostBySlug, getPosts, getRelatedPosts } from "@/lib/posts";
 import { ReadingProgress } from "./ReadingProgress";
 import { ShareButton } from "./ShareButton";
 import { ScrollTop } from "./ScrollTop";
@@ -56,9 +56,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const related = getPosts()
-    .filter((item) => item.slug !== post.slug && item.category === post.category)
-    .slice(0, 2);
+  const related = getRelatedPosts(post.slug, 2);
 
   const articleLd = {
     "@context": "https://schema.org",
