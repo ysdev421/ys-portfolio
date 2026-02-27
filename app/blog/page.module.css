@@ -23,6 +23,29 @@
   gap: 1rem;
 }
 
+.filters {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.filters button {
+  border: 1px solid #ccd8e7;
+  background: #ffffff;
+  color: #2e4562;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filters button.activeFilter {
+  background: #1e5ea7;
+  border-color: #1e5ea7;
+  color: #ffffff;
+}
+
 .card {
   background: #ffffff;
   border: 1px solid #d7e0eb;
