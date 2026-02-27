@@ -16,6 +16,11 @@ export default function Home() {
         <p className={styles.lead}>
           デザインの美しさと実務で使える知見を両立し、企業サイト品質の情報発信を目指します。
         </p>
+        <ul className={styles.valueList} aria-label="提供価値">
+          <li>再現性のある実装手順</li>
+          <li>見とれるビジュアル設計</li>
+          <li>公開後まで見据えた運用ノウハウ</li>
+        </ul>
         <div className={styles.actions}>
           <Link href="/blog" className={styles.primary}>
             最新記事を見る

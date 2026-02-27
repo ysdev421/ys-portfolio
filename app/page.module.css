@@ -41,6 +41,31 @@
   color: rgba(238, 245, 255, 0.9);
 }
 
+.valueList {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  max-width: 46ch;
+}
+
+.valueList li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(238, 245, 255, 0.92);
+  font-size: 0.95rem;
+}
+
+.valueList li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d9b171;
+  flex-shrink: 0;
+}
+
 .actions {
   margin-top: 2rem;
   display: flex;
