@@ -21,6 +21,9 @@ export default function BlogIndexPage() {
   >("All");
   const [query, setQuery] = useState(initialQueryFromUrl);
   const [email, setEmail] = useState("");
+  const [sortBy, setSortBy] = useState<"latest" | "readTime" | "title">(
+    "latest",
+  );
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -37,7 +40,7 @@ export default function BlogIndexPage() {
 
   const filteredPosts = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return posts.filter((post) => {
+    const base = posts.filter((post) => {
       const matchesCategory =
         activeCategory === "All" || post.category === activeCategory;
       const matchesQuery =
@@ -47,7 +50,20 @@ export default function BlogIndexPage() {
         post.tags.some((tag) => tag.toLowerCase().includes(q));
       return matchesCategory && matchesQuery;
     });
-  }, [posts, activeCategory, query]);
+
+    const readMinutes = (value: string) =>
+      Number.parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
+
+    return [...base].sort((a, b) => {
+      if (sortBy === "readTime") {
+        return readMinutes(a.readTime) - readMinutes(b.readTime);
+      }
+      if (sortBy === "title") {
+        return a.title.localeCompare(b.title, "ja");
+      }
+      return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
+    });
+  }, [posts, activeCategory, query, sortBy]);
 
   function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -95,6 +111,20 @@ export default function BlogIndexPage() {
             placeholder="記事を検索..."
             className={styles.searchInput}
           />
+        </label>
+        <label htmlFor="sort" className={styles.sortLabel}>
+          <select
+            id="sort"
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(e.target.value as "latest" | "readTime" | "title")
+            }
+            className={styles.sortSelect}
+          >
+            <option value="latest">新着順</option>
+            <option value="readTime">読了時間が短い順</option>
+            <option value="title">タイトル順</option>
+          </select>
         </label>
       </div>
 
