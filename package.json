@@ -1,5 +1,5 @@
-{
-  "name": "ys-portfolio-app",
+﻿{
+  "name": "ys-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,3 +22,4 @@
     "typescript": "^5"
   }
 }
+
