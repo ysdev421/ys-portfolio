@@ -1,4 +1,6 @@
 ﻿import type { Metadata } from "next";
+import { posts } from "@/lib/posts";
+import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -25,6 +27,27 @@ const links = [
   },
 ];
 
+const stats = [
+  {
+    label: "公開記事数",
+    value: `${posts.length}本`,
+  },
+  {
+    label: "対応カテゴリ",
+    value: `${new Set(posts.map((post) => post.category)).size}種類`,
+  },
+  {
+    label: "公開中SaaS",
+    value: `${products.filter((product) => product.status === "live").length}件`,
+  },
+  {
+    label: "最新更新日",
+    value: [...posts]
+      .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))[0]
+      .publishedAt,
+  },
+];
+
 export default function AboutPage() {
   return (
     <main id="main-content" className={styles.page}>
@@ -47,6 +70,15 @@ export default function AboutPage() {
             YS Journalでは、企業サイト品質を個人開発でも再現できるように、設計判断と実装手順を具体的に共有します。
           </p>
         </div>
+      </section>
+
+      <section className={styles.stats} aria-label="実績指標">
+        {stats.map((item) => (
+          <article key={item.label} className={styles.statCard}>
+            <p>{item.label}</p>
+            <strong>{item.value}</strong>
+          </article>
+        ))}
       </section>
 
       <section className={styles.section}>

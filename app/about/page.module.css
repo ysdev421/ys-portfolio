@@ -56,6 +56,31 @@
   color: #435a74;
 }
 
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+}
+
+.statCard {
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+}
+
+.statCard p {
+  font-size: 0.75rem;
+  color: #6b7f99;
+}
+
+.statCard strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #1d2a3e;
+  font-size: 1.05rem;
+}
+
 .section h2 {
   font-family: var(--font-serif), serif;
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
