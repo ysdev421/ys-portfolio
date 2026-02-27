@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -47,6 +48,25 @@ export default function Home() {
         <p>
           読みやすさ、速さ、信頼性。大企業サイトの要件を個人開発でも再現できる形で、記事と実装に落とし込みます。
         </p>
+      </section>
+
+      <section className={styles.products} id="products">
+        <h2>SaaS</h2>
+        <div className={styles.productGrid}>
+          {products.map((product) => (
+            <a
+              key={product.id}
+              href={product.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.productCard}
+            >
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <span>サービスを見る</span>
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   );
