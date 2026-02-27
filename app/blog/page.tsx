@@ -1,16 +1,36 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { getPosts } from "@/lib/posts";
 import styles from "./page.module.css";
+
+function initialQueryFromUrl() {
+  if (typeof window === "undefined") {
+    return "";
+  }
+  return new URLSearchParams(window.location.search).get("tag") ?? "";
+}
 
 export default function BlogIndexPage() {
   const posts = getPosts();
   const [activeCategory, setActiveCategory] = useState<
     "All" | "Design" | "Engineering" | "Brand"
   >("All");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQueryFromUrl);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (query.trim()) {
+      url.searchParams.set("tag", query.trim());
+    } else {
+      url.searchParams.delete("tag");
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [query]);
 
   const filteredPosts = useMemo(() => {
     const q = query.trim().toLowerCase();
