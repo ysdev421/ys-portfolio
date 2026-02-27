@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import { Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/google";
+﻿import type { Metadata } from "next";
+import { Murecho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
-const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+const notoSansJp = Noto_Sans_JP({
   variable: "--font-sans",
   weight: ["400", "500", "700"],
   subsets: ["latin"],
 });
 
-const shipporiMincho = Shippori_Mincho({
+const murecho = Murecho({
   variable: "--font-serif",
-  weight: ["500", "600", "700"],
+  weight: ["500", "700"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "YS Journal | Craft & Product Blog",
   description:
-    "思わず見とれるデザインと、実務に効く知見を両立するブログ。",
+    "美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。",
 };
 
 export default function RootLayout({
@@ -27,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${zenKakuGothicNew.variable} ${shipporiMincho.variable}`}
-      >
+      <body className={`${notoSansJp.variable} ${murecho.variable}`}>
         {children}
       </body>
     </html>
