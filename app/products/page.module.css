@@ -1,0 +1,54 @@
+﻿.page {
+  margin: 0 auto;
+  width: min(960px, 92%);
+  padding: 4rem 0 6rem;
+}
+
+.kicker {
+  letter-spacing: 0.13em;
+  font-size: 0.78rem;
+  color: #6b7f99;
+}
+
+.header h1 {
+  margin-top: 0.4rem;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #1d2a3e;
+}
+
+.header p {
+  margin-top: 0.7rem;
+  color: #435a74;
+}
+
+.grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+
+.card h2 {
+  color: #1d2a3e;
+}
+
+.card p {
+  margin-top: 0.6rem;
+  color: #4b5c73;
+  line-height: 1.7;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-weight: 700;
+  color: #1e5ea7;
+}

@@ -1,4 +1,4 @@
-export type Product = {
+﻿export type Product = {
   id: string;
   name: string;
   description: string;
@@ -13,4 +13,3 @@ export const products: Product[] = [
     url: "https://exam-master-amber.vercel.app/",
   },
 ];
-
