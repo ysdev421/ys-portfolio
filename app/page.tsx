@@ -1,14 +1,14 @@
+﻿import Link from "next/link";
 import styles from "./page.module.css";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>YS JOURNAL</p>
-        <h1>Design That Captures Attention, Content That Builds Trust.</h1>
+        <h1>美しく、読みやすく、信頼されるブログへ。</h1>
         <p className={styles.lead}>
-          見とれる体験と、実務で使える知見を同時に届けるプロダクトブログ。
+          デザインの美しさと実務で使える知見を両立し、企業サイト品質の情報発信を目指します。
         </p>
         <div className={styles.actions}>
           <Link href="/blog" className={styles.primary}>
@@ -25,7 +25,7 @@ export default function Home() {
           <p>FEATURED</p>
           <h2>企業サイト品質のブログ設計チェックリスト 2026</h2>
           <p>
-            企画、導線、可読性、運用性の4軸で「公開後も勝てる」構成を解説。
+            企画、導線、可読性、運用性の4軸で、公開後も育てられるブログ設計を解説します。
           </p>
         </article>
         <article className={styles.card}>
@@ -43,10 +43,9 @@ export default function Home() {
       </section>
 
       <section className={styles.philosophy} id="philosophy">
-        <h2>Editorial Philosophy</h2>
+        <h2>編集方針</h2>
         <p>
-          読みやすさ、速さ、信頼性。大企業サイトの要件を個人開発でも再現できる形で、
-          記事と実装に落とし込みます。
+          読みやすさ、速さ、信頼性。大企業サイトの要件を個人開発でも再現できる形で、記事と実装に落とし込みます。
         </p>
       </section>
     </main>
