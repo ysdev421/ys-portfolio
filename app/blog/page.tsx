@@ -24,6 +24,12 @@ export default function BlogIndexPage() {
   const [sortBy, setSortBy] = useState<"latest" | "readTime" | "title">(
     "latest",
   );
+  const [archive, setArchive] = useState("all");
+
+  const archiveOptions = useMemo(() => {
+    const months = new Set(posts.map((post) => post.publishedAt.slice(0, 7)));
+    return ["all", ...Array.from(months).sort((a, b) => (a < b ? 1 : -1))];
+  }, [posts]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -48,7 +54,9 @@ export default function BlogIndexPage() {
         post.title.toLowerCase().includes(q) ||
         post.summary.toLowerCase().includes(q) ||
         post.tags.some((tag) => tag.toLowerCase().includes(q));
-      return matchesCategory && matchesQuery;
+      const matchesArchive =
+        archive === "all" || post.publishedAt.startsWith(archive);
+      return matchesCategory && matchesQuery && matchesArchive;
     });
 
     const readMinutes = (value: string) =>
@@ -63,7 +71,7 @@ export default function BlogIndexPage() {
       }
       return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
     });
-  }, [posts, activeCategory, query, sortBy]);
+  }, [posts, activeCategory, query, sortBy, archive]);
 
   function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -124,6 +132,20 @@ export default function BlogIndexPage() {
             <option value="latest">新着順</option>
             <option value="readTime">読了時間が短い順</option>
             <option value="title">タイトル順</option>
+          </select>
+        </label>
+        <label htmlFor="archive" className={styles.sortLabel}>
+          <select
+            id="archive"
+            value={archive}
+            onChange={(e) => setArchive(e.target.value)}
+            className={styles.sortSelect}
+          >
+            {archiveOptions.map((value) => (
+              <option key={value} value={value}>
+                {value === "all" ? "全期間" : value}
+              </option>
+            ))}
           </select>
         </label>
       </div>
