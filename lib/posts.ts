@@ -120,12 +120,19 @@ export function getRelatedPosts(slug: string, limit = 2) {
         current.tags.includes(tag),
       ).length;
       const sameCategoryBonus = post.category === current.category ? 2 : 0;
+      const recencyBonus =
+        Date.parse(post.publishedAt) > Date.parse(current.publishedAt) ? 1 : 0;
       return {
         post,
-        score: sharedTagCount * 3 + sameCategoryBonus,
+        score: sharedTagCount * 3 + sameCategoryBonus + recencyBonus,
       };
     })
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+      return Date.parse(b.post.publishedAt) - Date.parse(a.post.publishedAt);
+    })
     .slice(0, limit)
     .map((item) => item.post);
 }

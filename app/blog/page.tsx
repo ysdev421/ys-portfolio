@@ -15,6 +15,7 @@ function initialQueryFromUrl() {
 
 export default function BlogIndexPage() {
   const posts = getPosts();
+  const newsletterUrl = process.env.NEXT_PUBLIC_NEWSLETTER_URL;
   const [activeCategory, setActiveCategory] = useState<
     "All" | "Design" | "Engineering" | "Brand"
   >("All");
@@ -51,6 +52,12 @@ export default function BlogIndexPage() {
   function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.trim()) {
+      return;
+    }
+    if (newsletterUrl) {
+      const url = new URL(newsletterUrl);
+      url.searchParams.set("email", email.trim());
+      window.location.href = url.toString();
       return;
     }
     const subject = encodeURIComponent("YS Journal 購読希望");
