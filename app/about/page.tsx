@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import packageJson from "@/package.json";
 import { posts } from "@/lib/posts";
 import { products } from "@/lib/products";
 import styles from "./page.module.css";
@@ -66,6 +67,13 @@ const updates = [
     detail:
       "ブログ一覧に購読フォームと外部リソース推薦セクションを追加し、再訪導線を改善。",
   },
+];
+
+const stack = [
+  { name: "Next.js", version: packageJson.dependencies.next },
+  { name: "React", version: packageJson.dependencies.react },
+  { name: "TypeScript", version: packageJson.devDependencies.typescript },
+  { name: "ESLint", version: packageJson.devDependencies.eslint },
 ];
 
 export default function AboutPage() {
@@ -152,6 +160,18 @@ export default function AboutPage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className={styles.section}>
+        <h2>技術スタック</h2>
+        <ul className={styles.stack}>
+          {stack.map((item) => (
+            <li key={item.name}>
+              <span>{item.name}</span>
+              <strong>{item.version}</strong>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );
