@@ -18,6 +18,7 @@ export default function BlogIndexPage() {
     "All" | "Design" | "Engineering" | "Brand"
   >("All");
   const [query, setQuery] = useState(initialQueryFromUrl);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -45,6 +46,16 @@ export default function BlogIndexPage() {
       return matchesCategory && matchesQuery;
     });
   }, [posts, activeCategory, query]);
+
+  function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email.trim()) {
+      return;
+    }
+    const subject = encodeURIComponent("YS Journal 購読希望");
+    const body = encodeURIComponent(`購読希望メール: ${email.trim()}`);
+    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+  }
 
   return (
     <main id="main-content" className={styles.page}>
@@ -114,6 +125,22 @@ export default function BlogIndexPage() {
             <p>条件に一致する記事が見つかりませんでした。</p>
           </div>
         )}
+      </section>
+
+      <section className={styles.subscribe}>
+        <h2>更新をメールで受け取る</h2>
+        <p>新しい記事と改善ログを配信します。</p>
+        <form onSubmit={handleSubscribe} className={styles.subscribeForm}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            aria-label="メールアドレス"
+            required
+          />
+          <button type="submit">購読する</button>
+        </form>
       </section>
     </main>
   );
