@@ -179,6 +179,51 @@
   border-top: 1px solid #d9e2ee;
 }
 
+.postCta {
+  margin-top: 1.2rem;
+  border: 1px solid #d9e2ee;
+  border-radius: 14px;
+  background: #f7fbff;
+  padding: 1rem 1.1rem;
+}
+
+.postCta h2 {
+  font-size: 1.05rem;
+  color: #1d2a3e;
+}
+
+.postCta p {
+  margin-top: 0.45rem;
+  color: #435a74;
+  line-height: 1.7;
+}
+
+.postCtaActions {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.postCtaPrimary,
+.postCtaSecondary {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-weight: 700;
+}
+
+.postCtaPrimary {
+  background: #1e5ea7;
+  color: #ffffff;
+}
+
+.postCtaSecondary {
+  border: 1px solid #b7c9de;
+  color: #1d2a3e;
+  background: #ffffff;
+}
+
 .related {
   margin-top: 1.4rem;
   padding-top: 1.2rem;

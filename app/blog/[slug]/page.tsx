@@ -151,6 +151,21 @@ export default async function BlogDetailPage({ params }: PageProps) {
         <div className={styles.shareRow}>
           <ShareButton title={post.title} />
         </div>
+        <section className={styles.postCta} aria-label="読了後のアクション">
+          <h2>次のアクション</h2>
+          <p>実装を進めるなら、まずはSaaS一覧と最新記事をチェックしてください。</p>
+          <div className={styles.postCtaActions}>
+            <Link href="/products" className={styles.postCtaPrimary}>
+              SaaS一覧を見る
+            </Link>
+            <a
+              href="mailto:hello@example.com?subject=YS%20Journal%20購読希望"
+              className={styles.postCtaSecondary}
+            >
+              更新を購読する
+            </a>
+          </div>
+        </section>
         {related.length > 0 && (
           <section className={styles.related}>
             <h2>関連記事</h2>
