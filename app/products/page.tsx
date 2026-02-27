@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { getNewsletterHref } from "@/lib/newsletter";
 import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
@@ -8,6 +9,9 @@ type StatusFilter = "all" | "live" | "coming_soon";
 
 export default function ProductsPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const newsletterHref = getNewsletterHref();
+  const liveCount = products.filter((product) => product.status === "live").length;
+  const soonCount = products.length - liveCount;
 
   const filteredProducts = useMemo(
     () =>
@@ -23,6 +27,9 @@ export default function ProductsPage() {
         <p className={styles.kicker}>PRODUCTS</p>
         <h1>SaaS一覧</h1>
         <p>運営中のサービスへ直接アクセスできます。</p>
+        <p className={styles.stats}>
+          全{products.length}件 / 公開中{liveCount}件 / 準備中{soonCount}件
+        </p>
       </header>
 
       <div className={styles.filters} role="group" aria-label="公開状態フィルタ">
@@ -71,7 +78,10 @@ export default function ProductsPage() {
                 サービスを開く
               </a>
             ) : (
-              <span className={styles.comingSoon}>近日公開予定</span>
+              <div className={styles.comingSoon}>
+                <span>近日公開予定</span>
+                <a href={newsletterHref}>公開通知を受け取る</a>
+              </div>
             )}
           </article>
         ))}

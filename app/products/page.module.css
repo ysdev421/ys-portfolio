@@ -22,6 +22,11 @@
   color: #435a74;
 }
 
+.stats {
+  font-size: 0.85rem;
+  color: #6b7f99;
+}
+
 .filters {
   margin-top: 1rem;
   display: flex;
@@ -122,8 +127,16 @@
 }
 
 .comingSoon {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
   margin-top: 0.85rem;
   font-size: 0.85rem;
   color: #7a6140;
+}
+
+.comingSoon a {
+  font-weight: 700;
+  color: #1e5ea7;
 }
