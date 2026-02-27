@@ -1,15 +1,15 @@
 ﻿import type { Metadata } from "next";
-import { Murecho, Noto_Sans_JP } from "next/font/google";
+import { Noto_Serif_JP, Zen_Kaku_Gothic_New } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const notoSansJp = Noto_Sans_JP({
+const zenKakuGothic = Zen_Kaku_Gothic_New({
   variable: "--font-sans",
   weight: ["400", "500", "700"],
   subsets: ["latin"],
 });
 
-const murecho = Murecho({
+const notoSerifJp = Noto_Serif_JP({
   variable: "--font-serif",
   weight: ["500", "700"],
   subsets: ["latin"],
@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJp.variable} ${murecho.variable}`}>
+      <body className={`${zenKakuGothic.variable} ${notoSerifJp.variable}`}>
         <a href="#main-content" className="skip-link">
           コンテンツへスキップ
         </a>
