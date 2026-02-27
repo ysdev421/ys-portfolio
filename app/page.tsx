@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,12 +11,12 @@ export default function Home() {
           見とれる体験と、実務で使える知見を同時に届けるプロダクトブログ。
         </p>
         <div className={styles.actions}>
-          <a href="#latest" className={styles.primary}>
+          <Link href="/blog" className={styles.primary}>
             最新記事を見る
-          </a>
-          <a href="#philosophy" className={styles.secondary}>
+          </Link>
+          <Link href="#philosophy" className={styles.secondary}>
             編集方針
-          </a>
+          </Link>
         </div>
       </section>
 

@@ -1,0 +1,42 @@
+﻿.page {
+  margin: 0 auto;
+  width: min(820px, 92%);
+  padding: 4rem 0 5rem;
+}
+
+.article {
+  border-radius: 20px;
+  border: 1px solid #d9e2ee;
+  background: #ffffff;
+  padding: 2.2rem;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #6b7f99;
+}
+
+.article h1 {
+  margin-top: 0.8rem;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  color: #1d2a3e;
+}
+
+.summary {
+  margin-top: 0.9rem;
+  color: #435a74;
+  line-height: 1.8;
+}
+
+.body {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.body p {
+  line-height: 1.95;
+  color: #293a50;
+}
