@@ -1,31 +1,52 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getPosts } from "@/lib/posts";
 import { recommendations } from "@/lib/recommendations";
 import styles from "./page.module.css";
 
-function initialQueryFromUrl() {
+type Category = "All" | "Design" | "Engineering" | "Brand";
+type SortBy = "latest" | "readTime" | "title";
+
+function getSearchParams() {
   if (typeof window === "undefined") {
-    return "";
+    return new URLSearchParams();
   }
-  return new URLSearchParams(window.location.search).get("tag") ?? "";
+  return new URLSearchParams(window.location.search);
+}
+
+function initialCategoryFromUrl(): Category {
+  const value = getSearchParams().get("category");
+  return value === "Design" || value === "Engineering" || value === "Brand"
+    ? value
+    : "All";
+}
+
+function initialSortFromUrl(): SortBy {
+  const value = getSearchParams().get("sort");
+  return value === "readTime" || value === "title" ? value : "latest";
+}
+
+function initialArchiveFromUrl() {
+  return getSearchParams().get("archive") ?? "all";
+}
+
+function initialQueryFromUrl() {
+  return getSearchParams().get("tag") ?? "";
 }
 
 export default function BlogIndexPage() {
   const posts = getPosts();
   const newsletterUrl = process.env.NEXT_PUBLIC_NEWSLETTER_URL;
-  const [activeCategory, setActiveCategory] = useState<
-    "All" | "Design" | "Engineering" | "Brand"
-  >("All");
+  const [activeCategory, setActiveCategory] = useState<Category>(
+    initialCategoryFromUrl,
+  );
   const [queryInput, setQueryInput] = useState(initialQueryFromUrl);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQueryFromUrl);
   const [email, setEmail] = useState("");
-  const [sortBy, setSortBy] = useState<"latest" | "readTime" | "title">(
-    "latest",
-  );
-  const [archive, setArchive] = useState("all");
+  const [sortBy, setSortBy] = useState<SortBy>(initialSortFromUrl);
+  const [archive, setArchive] = useState(initialArchiveFromUrl);
 
   const archiveOptions = useMemo(() => {
     const months = new Set(posts.map((post) => post.publishedAt.slice(0, 7)));
@@ -44,13 +65,33 @@ export default function BlogIndexPage() {
       return;
     }
     const url = new URL(window.location.href);
+
     if (debouncedQuery.trim()) {
       url.searchParams.set("tag", debouncedQuery.trim());
     } else {
       url.searchParams.delete("tag");
     }
+
+    if (activeCategory !== "All") {
+      url.searchParams.set("category", activeCategory);
+    } else {
+      url.searchParams.delete("category");
+    }
+
+    if (sortBy !== "latest") {
+      url.searchParams.set("sort", sortBy);
+    } else {
+      url.searchParams.delete("sort");
+    }
+
+    if (archive !== "all") {
+      url.searchParams.set("archive", archive);
+    } else {
+      url.searchParams.delete("archive");
+    }
+
     window.history.replaceState({}, "", url.toString());
-  }, [debouncedQuery]);
+  }, [debouncedQuery, activeCategory, sortBy, archive]);
 
   const filteredPosts = useMemo(() => {
     const q = debouncedQuery.trim().toLowerCase();
@@ -132,9 +173,7 @@ export default function BlogIndexPage() {
           <select
             id="sort"
             value={sortBy}
-            onChange={(e) =>
-              setSortBy(e.target.value as "latest" | "readTime" | "title")
-            }
+            onChange={(e) => setSortBy(e.target.value as SortBy)}
             className={styles.sortSelect}
           >
             <option value="latest">新着順</option>
