@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState, useEffect } from "react";
 import { getPosts } from "@/lib/posts";
+import { recommendations } from "@/lib/recommendations";
 import styles from "./page.module.css";
 
 function initialQueryFromUrl() {
@@ -141,6 +142,24 @@ export default function BlogIndexPage() {
           />
           <button type="submit">購読する</button>
         </form>
+      </section>
+
+      <section className={styles.recommend}>
+        <h2>Recommended Reads</h2>
+        <div className={styles.recommendGrid}>
+          {recommendations.map((item) => (
+            <a
+              key={item.id}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.recommendCard}
+            >
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   );

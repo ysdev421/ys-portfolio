@@ -208,3 +208,38 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.recommend {
+  margin-top: 1.4rem;
+}
+
+.recommend h2 {
+  font-size: 1.15rem;
+  color: #1d2a3e;
+}
+
+.recommendGrid {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+}
+
+.recommendCard {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #d7e0eb;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.recommendCard h3 {
+  color: #1d2a3e;
+  font-size: 1rem;
+}
+
+.recommendCard p {
+  margin-top: 0.45rem;
+  color: #4b5c73;
+  line-height: 1.6;
+}
