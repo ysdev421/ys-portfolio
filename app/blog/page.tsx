@@ -19,7 +19,8 @@ export default function BlogIndexPage() {
   const [activeCategory, setActiveCategory] = useState<
     "All" | "Design" | "Engineering" | "Brand"
   >("All");
-  const [query, setQuery] = useState(initialQueryFromUrl);
+  const [queryInput, setQueryInput] = useState(initialQueryFromUrl);
+  const [debouncedQuery, setDebouncedQuery] = useState(initialQueryFromUrl);
   const [email, setEmail] = useState("");
   const [sortBy, setSortBy] = useState<"latest" | "readTime" | "title">(
     "latest",
@@ -32,20 +33,27 @@ export default function BlogIndexPage() {
   }, [posts]);
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedQuery(queryInput);
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [queryInput]);
+
+  useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
     const url = new URL(window.location.href);
-    if (query.trim()) {
-      url.searchParams.set("tag", query.trim());
+    if (debouncedQuery.trim()) {
+      url.searchParams.set("tag", debouncedQuery.trim());
     } else {
       url.searchParams.delete("tag");
     }
     window.history.replaceState({}, "", url.toString());
-  }, [query]);
+  }, [debouncedQuery]);
 
   const filteredPosts = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = debouncedQuery.trim().toLowerCase();
     const base = posts.filter((post) => {
       const matchesCategory =
         activeCategory === "All" || post.category === activeCategory;
@@ -71,7 +79,7 @@ export default function BlogIndexPage() {
       }
       return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
     });
-  }, [posts, activeCategory, query, sortBy, archive]);
+  }, [posts, activeCategory, debouncedQuery, sortBy, archive]);
 
   function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -114,8 +122,8 @@ export default function BlogIndexPage() {
           <input
             id="search"
             type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={queryInput}
+            onChange={(e) => setQueryInput(e.target.value)}
             placeholder="記事を検索..."
             className={styles.searchInput}
           />
@@ -160,7 +168,7 @@ export default function BlogIndexPage() {
                 <span className="cat-badge" data-category={post.category}>
                   {post.category}
                 </span>
-                {idx === 0 && activeCategory === "All" && query === "" && (
+                {idx === 0 && activeCategory === "All" && debouncedQuery === "" && (
                   <span className={styles.newBadge}>NEW</span>
                 )}
                 <span className={styles.metaDate}>{post.publishedAt}</span>
