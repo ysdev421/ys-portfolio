@@ -136,3 +136,14 @@ export function getRelatedPosts(slug: string, limit = 2) {
     .slice(0, limit)
     .map((item) => item.post);
 }
+
+export function getNextReads(
+  slug: string,
+  excludeSlugs: string[] = [],
+  limit = 3,
+) {
+  const exclude = new Set([slug, ...excludeSlugs]);
+  return getPosts()
+    .filter((post) => !exclude.has(post.slug))
+    .slice(0, limit);
+}

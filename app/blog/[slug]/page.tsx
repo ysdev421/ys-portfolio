@@ -1,7 +1,12 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostBySlug, getPosts, getRelatedPosts } from "@/lib/posts";
+import {
+  getNextReads,
+  getPostBySlug,
+  getPosts,
+  getRelatedPosts,
+} from "@/lib/posts";
 import { ReadingProgress } from "./ReadingProgress";
 import { ShareButton } from "./ShareButton";
 import { ScrollTop } from "./ScrollTop";
@@ -57,6 +62,11 @@ export default async function BlogDetailPage({ params }: PageProps) {
   }
 
   const related = getRelatedPosts(post.slug, 2);
+  const nextReads = getNextReads(
+    post.slug,
+    related.map((item) => item.slug),
+    3,
+  );
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -145,6 +155,18 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <h2>関連記事</h2>
             <ul>
               {related.map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/blog/${item.slug}`}>{item.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {nextReads.length > 0 && (
+          <section className={styles.nextReads}>
+            <h2>次に読む記事</h2>
+            <ul>
+              {nextReads.map((item) => (
                 <li key={item.slug}>
                   <Link href={`/blog/${item.slug}`}>{item.title}</Link>
                 </li>

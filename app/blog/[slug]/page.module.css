@@ -184,6 +184,29 @@
   font-weight: 600;
 }
 
+.nextReads {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #d0dcea;
+}
+
+.nextReads h2 {
+  font-size: 1.05rem;
+  color: #1d2a3e;
+}
+
+.nextReads ul {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.nextReads a {
+  color: #1e5ea7;
+  font-weight: 600;
+}
+
 .authorCard {
   display: flex;
   gap: 1.2rem;
