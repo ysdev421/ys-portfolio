@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls d:/00_個人製作\\\\\\(動画など）/プログラム/ys-portfolio/)",
+      "Bash(ls -la \"d:/00_個人製作\\(動画など）/プログラム/ys-portfolio/\")",
+      "Bash(find \"d:/00_個人製作\\(動画など）/プログラム/ys-portfolio/app\" -type f)",
+      "Bash(find \"d:/00_個人製作\\(動画など）/プログラム/ys-portfolio/lib\" -type f)"
+    ]
+  }
+}

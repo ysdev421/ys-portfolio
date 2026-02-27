@@ -1,0 +1,41 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #ccd8e7;
+  background: #ffffff;
+  color: #304a69;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-sans), sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.twitterBtn {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:not(.twitterBtn):hover {
+    background: #1e5ea7;
+    border-color: #1e5ea7;
+    color: #ffffff;
+  }
+
+  .twitterBtn:hover {
+    background: #222222;
+    border-color: #222222;
+  }
+}

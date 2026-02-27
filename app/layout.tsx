@@ -35,6 +35,11 @@ export const metadata: Metadata = {
     description:
       "美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "https://ys-portfolio.vercel.app/feed.xml",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -45,6 +50,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJp.variable} ${murecho.variable}`}>
+        <a href="#main-content" className="skip-link">
+          コンテンツへスキップ
+        </a>
         <header className="site-header">
           <Link href="/" className="brand">
             YS Journal
@@ -52,14 +60,18 @@ export default function RootLayout({
           <nav className="site-nav">
             <Link href="/blog">Blog</Link>
             <Link href="/products">SaaS</Link>
+            <Link href="/about">About</Link>
           </nav>
         </header>
         {children}
         <footer className="site-footer">
-          <p>更新情報を受け取りたい方は購読してください。</p>
-          <a href="mailto:hello@example.com?subject=YS%20Journal%20購読希望">
-            購読を申し込む
-          </a>
+          <p className="footer-copy">© {new Date().getFullYear()} YS Journal</p>
+          <nav className="footer-nav" aria-label="フッターナビゲーション">
+            <Link href="/blog">Blog</Link>
+            <Link href="/products">SaaS</Link>
+            <Link href="/about">About</Link>
+            <a href="/feed.xml" aria-label="RSSフィード">RSS</a>
+          </nav>
         </footer>
       </body>
     </html>

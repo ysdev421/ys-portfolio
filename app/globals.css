@@ -1,12 +1,42 @@
 :root {
   --background: #e9eef5;
   --foreground: #162338;
+
+  --cat-design-bg: #fdf4e7;
+  --cat-design-color: #8a5e1a;
+  --cat-design-border: #f0d9a8;
+
+  --cat-engineering-bg: #e8f0fb;
+  --cat-engineering-color: #1a4a8a;
+  --cat-engineering-border: #b8cef0;
+
+  --cat-brand-bg: #f0eaf8;
+  --cat-brand-color: #6b3aab;
+  --cat-brand-border: #d4c0ef;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
@@ -44,6 +74,26 @@ body {
 .site-nav a {
   color: #304a69;
   font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 180ms ease;
+}
+
+.site-nav a:hover {
+  color: #1e5ea7;
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding-top: 0.9rem;
+  }
+
+  .site-nav {
+    gap: 0.6rem;
+  }
+
+  .site-nav a {
+    font-size: 0.85rem;
+  }
 }
 
 .site-footer {
@@ -53,14 +103,31 @@ body {
   padding-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: 0.7rem;
   color: #435a74;
 }
 
-.site-footer a {
+.footer-copy {
+  font-size: 0.85rem;
+  color: #6b7f99;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.footer-nav a {
+  font-size: 0.85rem;
+  color: #435a74;
+  font-weight: 600;
+  transition: color 180ms ease;
+}
+
+.footer-nav a:hover {
   color: #1e5ea7;
-  font-weight: 700;
 }
 
 * {
@@ -72,4 +139,55 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.cat-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  border: 1px solid;
+}
+
+.cat-badge[data-category="Design"] {
+  background: var(--cat-design-bg);
+  color: var(--cat-design-color);
+  border-color: var(--cat-design-border);
+}
+
+.cat-badge[data-category="Engineering"] {
+  background: var(--cat-engineering-bg);
+  color: var(--cat-engineering-color);
+  border-color: var(--cat-engineering-border);
+}
+
+.cat-badge[data-category="Brand"] {
+  background: var(--cat-brand-bg);
+  color: var(--cat-brand-color);
+  border-color: var(--cat-brand-border);
+}
+
+:focus-visible {
+  outline: 2px solid #1e5ea7;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: #1e5ea7;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  z-index: 9999;
+  transition: top 0s;
+}
+
+.skip-link:focus {
+  top: 0;
 }

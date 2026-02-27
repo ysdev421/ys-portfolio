@@ -1,0 +1,105 @@
+.page {
+  margin: 0 auto;
+  width: min(820px, 92%);
+  padding: 4rem 0 6rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.kicker {
+  letter-spacing: 0.13em;
+  font-size: 0.78rem;
+  color: #6b7f99;
+}
+
+.header h1 {
+  margin-top: 0.4rem;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #1d2a3e;
+}
+
+.profile {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #1a2d45, #1e5ea7);
+  color: #eef5ff;
+  font-family: var(--font-serif), serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bio h2 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.3rem;
+  color: #1d2a3e;
+}
+
+.bio p {
+  margin-top: 0.8rem;
+  line-height: 1.85;
+  color: #435a74;
+}
+
+.section h2 {
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  color: #1d2a3e;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #d9e2ee;
+}
+
+.section > p {
+  margin-top: 1rem;
+  line-height: 1.85;
+  color: #435a74;
+}
+
+.skills {
+  margin-top: 1.2rem;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.skills li {
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+}
+
+.skillLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1e5ea7;
+}
+
+.skills p {
+  margin-top: 0.4rem;
+  color: #435a74;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .profile {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}

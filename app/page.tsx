@@ -1,10 +1,15 @@
 ﻿import Link from "next/link";
 import { products } from "@/lib/products";
+import { getPosts } from "@/lib/posts";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const posts = getPosts();
+  const featured = posts[0];
+  const latestCards = posts.slice(1, 3);
+
   return (
-    <main className={styles.page}>
+    <main id="main-content" className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>YS JOURNAL</p>
         <h1>美しく、読みやすく、信頼されるブログへ。</h1>
@@ -25,25 +30,29 @@ export default function Home() {
       </section>
 
       <section className={styles.grid} id="latest">
-        <article className={styles.featured}>
-          <p>FEATURED</p>
-          <h2>企業サイト品質のブログ設計チェックリスト 2026</h2>
-          <p>
-            企画、導線、可読性、運用性の4軸で、公開後も育てられるブログ設計を解説します。
-          </p>
-        </article>
-        <article className={styles.card}>
-          <p>UI SYSTEM</p>
-          <h3>タイポグラフィ設計で印象の9割を決める方法</h3>
-        </article>
-        <article className={styles.card}>
-          <p>ENGINEERING</p>
-          <h3>Next.js App Routerで高速な記事ページを実装する</h3>
-        </article>
-        <article className={styles.card}>
-          <p>BRAND</p>
-          <h3>色設計を変えるだけで「安っぽさ」を消す実践手順</h3>
-        </article>
+        {featured && (
+          <article className={styles.featured}>
+            <div className={styles.featuredMeta}>
+              <span className={styles.featuredBadge}>FEATURED</span>
+              <span className="cat-badge" data-category={featured.category}>
+                {featured.category}
+              </span>
+            </div>
+            <h2>{featured.title}</h2>
+            <p>{featured.summary}</p>
+            <Link href={`/blog/${featured.slug}`} className={styles.featuredLink}>
+              続きを読む
+            </Link>
+          </article>
+        )}
+        {latestCards.map((post) => (
+          <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.card}>
+            <span className="cat-badge" data-category={post.category}>
+              {post.category}
+            </span>
+            <h3>{post.title}</h3>
+          </Link>
+        ))}
       </section>
 
       <section className={styles.philosophy} id="philosophy">
@@ -53,22 +62,43 @@ export default function Home() {
         </p>
       </section>
 
+      <section className={styles.newsletter}>
+        <div>
+          <h2>更新情報を受け取る</h2>
+          <p>デザイン・エンジニアリング・SaaSに関する新着記事をメールでお知らせします。</p>
+        </div>
+        <a
+          href="mailto:hello@example.com?subject=YS%20Journal%20購読希望"
+          className={styles.newsletterBtn}
+        >
+          購読を申し込む
+        </a>
+      </section>
+
       <section className={styles.products} id="products">
         <h2>SaaS</h2>
         <div className={styles.productGrid}>
-          {products.map((product) => (
-            <a
-              key={product.id}
-              href={product.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.productCard}
-            >
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <span>サービスを見る</span>
-            </a>
-          ))}
+          {products.map((product) =>
+            product.status === "live" && product.url ? (
+              <a
+                key={product.id}
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.productCard}
+              >
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <span>サービスを見る</span>
+              </a>
+            ) : (
+              <div key={product.id} className={`${styles.productCard} ${styles.productCardSoon}`}>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <span className={styles.comingSoon}>公開準備中</span>
+              </div>
+            )
+          )}
         </div>
       </section>
     </main>
