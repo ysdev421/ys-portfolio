@@ -53,6 +53,18 @@
   line-height: 1.8;
 }
 
+.freshness {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+}
+
+.freshness p {
+  font-size: 0.8rem;
+  color: #6b7f99;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

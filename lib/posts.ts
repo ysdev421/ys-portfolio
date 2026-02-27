@@ -10,6 +10,8 @@ export type Post = {
   category: "Design" | "Engineering" | "Brand";
   tags: string[];
   publishedAt: string;
+  updatedAt: string;
+  reviewedAt: string;
   readTime: string;
   sections: Section[];
 };
@@ -23,6 +25,8 @@ export const posts: Post[] = [
     category: "Design",
     tags: ["情報設計", "UX", "CTA", "運用"],
     publishedAt: "2026-02-27",
+    updatedAt: "2026-02-27",
+    reviewedAt: "2026-02-27",
     readTime: "8 min",
     sections: [
       {
@@ -48,6 +52,8 @@ export const posts: Post[] = [
     category: "Brand",
     tags: ["タイポグラフィ", "可読性", "余白"],
     publishedAt: "2026-02-20",
+    updatedAt: "2026-02-24",
+    reviewedAt: "2026-02-27",
     readTime: "6 min",
     sections: [
       {
@@ -66,6 +72,8 @@ export const posts: Post[] = [
     category: "Engineering",
     tags: ["Next.js", "SSG", "Performance"],
     publishedAt: "2026-02-12",
+    updatedAt: "2026-02-26",
+    reviewedAt: "2026-02-27",
     readTime: "7 min",
     sections: [
       {
@@ -84,6 +92,8 @@ export const posts: Post[] = [
     category: "Brand",
     tags: ["SaaS", "収益化", "MVP"],
     publishedAt: "2026-02-07",
+    updatedAt: "2026-02-22",
+    reviewedAt: "2026-02-27",
     readTime: "9 min",
     sections: [
       {

@@ -113,6 +113,10 @@ export default async function BlogDetailPage({ params }: PageProps) {
         </div>
         <h1>{post.title}</h1>
         <p className={styles.summary}>{post.summary}</p>
+        <div className={styles.freshness}>
+          <p>最終更新: {post.updatedAt}</p>
+          <p>最終確認: {post.reviewedAt}</p>
+        </div>
         {post.tags.length > 0 && (
           <ul className={styles.tags} aria-label="タグ">
             {post.tags.map((tag) => (
