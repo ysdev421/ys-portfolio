@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Noto_Serif_JP, Zen_Kaku_Gothic_New } from "next/font/google";
 import Link from "next/link";
+import { GaPageView } from "./GaPageView";
 import "./globals.css";
 
 const zenKakuGothic = Zen_Kaku_Gothic_New({
@@ -47,9 +48,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="ja">
       <body className={`${zenKakuGothic.variable} ${notoSerifJp.variable}`}>
+        {gaMeasurementId ? <GaPageView measurementId={gaMeasurementId} /> : null}
         <a href="#main-content" className="skip-link">
           コンテンツへスキップ
         </a>
