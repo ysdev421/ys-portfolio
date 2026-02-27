@@ -15,6 +15,14 @@ export default function Home() {
           <Link href="/blog" className={styles.primary}>
             最新記事を見る
           </Link>
+          <a
+            href={products[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.secondary}
+          >
+            SaaSを開く
+          </a>
           <Link href="#philosophy" className={styles.secondary}>
             編集方針
           </Link>
