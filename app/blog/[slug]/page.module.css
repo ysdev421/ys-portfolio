@@ -99,6 +99,12 @@
   transition: color 150ms ease;
 }
 
+.tocList a.tocActive {
+  color: #124a8a;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .tocList a:hover {
     color: #124a8a;

@@ -10,6 +10,7 @@ import {
 import { ReadingProgress } from "./ReadingProgress";
 import { ShareButton } from "./ShareButton";
 import { ScrollTop } from "./ScrollTop";
+import { TocNav } from "./TocNav";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -125,16 +126,12 @@ export default async function BlogDetailPage({ params }: PageProps) {
         )}
 
         {post.sections.length > 1 && (
-          <nav className={styles.toc} aria-label="目次">
-            <p className={styles.tocTitle}>目次</p>
-            <ol className={styles.tocList}>
-              {post.sections.map((section) => (
-                <li key={section.heading}>
-                  <a href={`#${headingId(section.heading)}`}>{section.heading}</a>
-                </li>
-              ))}
-            </ol>
-          </nav>
+          <TocNav
+            items={post.sections.map((section) => ({
+              id: headingId(section.heading),
+              heading: section.heading,
+            }))}
+          />
         )}
 
         <div className={styles.body}>
