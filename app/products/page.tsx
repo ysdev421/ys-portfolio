@@ -15,9 +15,13 @@ export default function ProductsPage() {
           <article key={product.id} className={styles.card}>
             <h2>{product.name}</h2>
             <p>{product.description}</p>
-            <a href={product.url} target="_blank" rel="noopener noreferrer">
-              サービスを開く
-            </a>
+            {product.status === "live" && product.url ? (
+              <a href={product.url} target="_blank" rel="noopener noreferrer">
+                サービスを開く
+              </a>
+            ) : (
+              <span className={styles.comingSoon}>公開準備中</span>
+            )}
           </article>
         ))}
       </section>

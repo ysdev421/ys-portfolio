@@ -52,3 +52,10 @@
   font-weight: 700;
   color: #1e5ea7;
 }
+
+.comingSoon {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-weight: 700;
+  color: #7a6140;
+}
