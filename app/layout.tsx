@@ -18,6 +18,22 @@ export const metadata: Metadata = {
   title: "YS Journal | Craft & Product Blog",
   description:
     "美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。",
+  metadataBase: new URL("https://ys-portfolio.vercel.app"),
+  openGraph: {
+    title: "YS Journal | Craft & Product Blog",
+    description:
+      "美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。",
+    url: "https://ys-portfolio.vercel.app",
+    siteName: "YS Journal",
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YS Journal | Craft & Product Blog",
+    description:
+      "美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。",
+  },
 };
 
 export default function RootLayout({

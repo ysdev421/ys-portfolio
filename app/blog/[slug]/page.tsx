@@ -33,9 +33,25 @@ export default async function BlogDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const related = getPosts()
+    .filter((item) => item.slug !== post.slug && item.category === post.category)
+    .slice(0, 2);
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    datePublished: post.publishedAt,
+    description: post.summary,
+  };
+
   return (
     <main className={styles.page}>
       <article className={styles.article}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        />
         <p className={styles.meta}>
           {post.category} / {post.publishedAt} / {post.readTime}
         </p>
@@ -46,6 +62,18 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+        {related.length > 0 && (
+          <section className={styles.related}>
+            <h2>関連記事</h2>
+            <ul>
+              {related.map((item) => (
+                <li key={item.slug}>
+                  <a href={`/blog/${item.slug}`}>{item.title}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </article>
     </main>
   );

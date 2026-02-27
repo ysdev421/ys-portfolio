@@ -40,3 +40,26 @@
   line-height: 1.95;
   color: #293a50;
 }
+
+.related {
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #d9e2ee;
+}
+
+.related h2 {
+  font-size: 1.1rem;
+  color: #1d2a3e;
+}
+
+.related ul {
+  margin-top: 0.6rem;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.related a {
+  color: #1e5ea7;
+  font-weight: 600;
+}
