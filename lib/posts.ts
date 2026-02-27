@@ -1,11 +1,17 @@
-﻿export type Post = {
+﻿export type Section = {
+  heading: string;
+  paras: string[];
+};
+
+export type Post = {
   slug: string;
   title: string;
   summary: string;
   category: "Design" | "Engineering" | "Brand";
+  tags: string[];
   publishedAt: string;
   readTime: string;
-  body: string[];
+  sections: Section[];
 };
 
 export const posts: Post[] = [
@@ -15,12 +21,24 @@ export const posts: Post[] = [
     summary:
       "情報設計、デザイン、運用の三位一体で、長期運用できるブログを設計するための実践ガイド。",
     category: "Design",
+    tags: ["情報設計", "UX", "CTA", "運用"],
     publishedAt: "2026-02-27",
     readTime: "8 min",
-    body: [
-      "企業品質のブログは、見た目だけでなく運用設計まで含めて評価されます。",
-      "特に重要なのは、記事テンプレートの統一、CTA導線の明確化、そして公開後の改善サイクルです。",
-      "本記事では、初期構築時に決めておくべき設計項目をチェックリスト形式で整理します。",
+    sections: [
+      {
+        heading: "最初に決めるべきこと",
+        paras: [
+          "企業品質のブログは、見た目だけでなく運用設計まで含めて評価されます。",
+          "記事テンプレート、カテゴリ設計、CTA導線を先に定義しておくことで、公開後の改善が安定します。",
+        ],
+      },
+      {
+        heading: "CTA設計",
+        paras: [
+          "CTAは記事の最後だけでなく、本文中にも自然に配置するのが有効です。",
+          "SaaS導線、購読、問い合わせの3種類を用意し、ユーザーの温度感に合わせて選べる構成にします。",
+        ],
+      },
     ],
   },
   {
@@ -28,11 +46,17 @@ export const posts: Post[] = [
     title: "信頼感を生むタイポグラフィ設計の基本",
     summary: "フォント、余白、行間の最適化で、読み続けても疲れない記事体験を実現する。",
     category: "Brand",
+    tags: ["タイポグラフィ", "可読性", "余白"],
     publishedAt: "2026-02-20",
     readTime: "6 min",
-    body: [
-      "タイポグラフィはブランド印象の基盤です。",
-      "見出しと本文のコントラストを明確にし、リズムのある余白設計を行うことで可読性が高まります。",
+    sections: [
+      {
+        heading: "読みやすさは設計できる",
+        paras: [
+          "本文の行間は1.8前後、1行の文字数は35〜45字を基準にすると安定します。",
+          "見出しと本文のコントラストを意図的に作ることで、読了率が改善します。",
+        ],
+      },
     ],
   },
   {
@@ -40,11 +64,35 @@ export const posts: Post[] = [
     title: "Next.jsで記事ページを高速化する実装パターン",
     summary: "静的生成とキャッシュ戦略を組み合わせ、安定した高速配信を実現する。",
     category: "Engineering",
+    tags: ["Next.js", "SSG", "Performance"],
     publishedAt: "2026-02-12",
     readTime: "7 min",
-    body: [
-      "高速化はSEOと読了率の両方に効く、最重要テーマです。",
-      "画像最適化、レンダリング戦略、メタデータ管理を組み合わせて改善を積み上げます。",
+    sections: [
+      {
+        heading: "静的生成を基本にする",
+        paras: [
+          "記事ページは可能な限り静的生成し、TTFBの安定化を優先します。",
+          "更新頻度に応じて再生成タイミングを調整し、運用コストとのバランスを取ります。",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "saas-monetization-roadmap",
+    title: "個人開発SaaSの収益化ロードマップ",
+    summary: "課題検証から価格設計まで、実行順序が分かる収益化の実践ガイド。",
+    category: "Brand",
+    tags: ["SaaS", "収益化", "MVP"],
+    publishedAt: "2026-02-07",
+    readTime: "9 min",
+    sections: [
+      {
+        heading: "MVP前にやる検証",
+        paras: [
+          "実装前に5〜10人の想定ユーザーへ課題ヒアリングを行い、検証軸を定義します。",
+          "課題の深さと支払い意欲を同時に確認すると、優先順位の判断が早くなります。",
+        ],
+      },
     ],
   },
 ];
