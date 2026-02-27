@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { getPosts } from "@/lib/posts";
+import { getNewsletterMailto } from "@/lib/newsletter";
 import { recommendations } from "@/lib/recommendations";
 import styles from "./page.module.css";
 
@@ -133,9 +134,7 @@ export default function BlogIndexPage() {
       window.location.href = url.toString();
       return;
     }
-    const subject = encodeURIComponent("YS Journal 購読希望");
-    const body = encodeURIComponent(`購読希望メール: ${email.trim()}`);
-    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    window.location.href = getNewsletterMailto(email.trim());
   }
 
   return (

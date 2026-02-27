@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import { getNewsletterHref } from "@/lib/newsletter";
 import { products } from "@/lib/products";
 import { getPosts } from "@/lib/posts";
 import styles from "./page.module.css";
@@ -72,10 +73,7 @@ export default function Home() {
           <h2>更新情報を受け取る</h2>
           <p>デザイン・エンジニアリング・SaaSに関する新着記事をメールでお知らせします。</p>
         </div>
-        <a
-          href="mailto:hello@example.com?subject=YS%20Journal%20購読希望"
-          className={styles.newsletterBtn}
-        >
+        <a href={getNewsletterHref()} className={styles.newsletterBtn}>
           購読を申し込む
         </a>
       </section>
@@ -102,7 +100,7 @@ export default function Home() {
                 <p>{product.description}</p>
                 <span className={styles.comingSoon}>公開準備中</span>
               </div>
-            )
+            ),
           )}
         </div>
       </section>

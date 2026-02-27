@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getNewsletterHref } from "@/lib/newsletter";
 import {
   getNextReads,
   getPostBySlug,
@@ -158,10 +159,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <Link href="/products" className={styles.postCtaPrimary}>
               SaaS一覧を見る
             </Link>
-            <a
-              href="mailto:hello@example.com?subject=YS%20Journal%20購読希望"
-              className={styles.postCtaSecondary}
-            >
+            <a href={getNewsletterHref()} className={styles.postCtaSecondary}>
               更新を購読する
             </a>
           </div>
