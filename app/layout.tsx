@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { Murecho, Noto_Sans_JP } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const notoSansJp = Noto_Sans_JP({
@@ -44,7 +45,22 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJp.variable} ${murecho.variable}`}>
+        <header className="site-header">
+          <Link href="/" className="brand">
+            YS Journal
+          </Link>
+          <nav className="site-nav">
+            <Link href="/blog">Blog</Link>
+            <Link href="/products">SaaS</Link>
+          </nav>
+        </header>
         {children}
+        <footer className="site-footer">
+          <p>更新情報を受け取りたい方は購読してください。</p>
+          <a href="mailto:hello@example.com?subject=YS%20Journal%20購読希望">
+            購読を申し込む
+          </a>
+        </footer>
       </body>
     </html>
   );

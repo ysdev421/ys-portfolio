@@ -20,6 +20,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.site-header {
+  margin: 0 auto;
+  width: min(1120px, 92%);
+  padding-top: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--font-serif), serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a2d45;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.site-nav a {
+  color: #304a69;
+  font-weight: 600;
+}
+
+.site-footer {
+  margin: 2rem auto 3rem;
+  width: min(1120px, 92%);
+  border-top: 1px solid #d6deea;
+  padding-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.7rem;
+  color: #435a74;
+}
+
+.site-footer a {
+  color: #1e5ea7;
+  font-weight: 700;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
