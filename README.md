@@ -28,3 +28,5 @@ npm run start
 ## デプロイ
 
 Vercel に GitHub 連携して `main` ブランチをデプロイしてください。
+
+更新日時: 2026-02-27 Vercel再デプロイ用コミット
