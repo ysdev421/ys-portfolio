@@ -151,6 +151,37 @@
   color: #1d2a3e;
 }
 
+.timeline {
+  margin-top: 1rem;
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.timeline li {
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.timelineDate {
+  font-size: 0.75rem;
+  color: #6b7f99;
+}
+
+.timeline li h3 {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: #1d2a3e;
+}
+
+.timeline li p {
+  margin-top: 0.35rem;
+  color: #435a74;
+  line-height: 1.7;
+}
+
 @media (max-width: 600px) {
   .profile {
     flex-direction: column;

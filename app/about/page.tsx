@@ -48,6 +48,26 @@ const stats = [
   },
 ];
 
+const updates = [
+  {
+    date: "2026-02-27",
+    title: "ブログ一覧の状態共有を強化",
+    detail:
+      "カテゴリ・並び順・アーカイブ・検索条件をURLクエリに同期し、共有しやすく改善。",
+  },
+  {
+    date: "2026-02-27",
+    title: "記事詳細の回遊導線を強化",
+    detail: "関連記事に加えて「次に読む記事」セクションを追加。",
+  },
+  {
+    date: "2026-02-26",
+    title: "購読導線と推薦導線を追加",
+    detail:
+      "ブログ一覧に購読フォームと外部リソース推薦セクションを追加し、再訪導線を改善。",
+  },
+];
+
 export default function AboutPage() {
   return (
     <main id="main-content" className={styles.page}>
@@ -119,6 +139,19 @@ export default function AboutPage() {
           情報の見やすさ、技術的な再現性、運用し続けられる構成を重視しています。記事は公開後も改善を重ね、
           実務で使える形に磨き続けます。
         </p>
+      </section>
+
+      <section className={styles.section}>
+        <h2>更新履歴</h2>
+        <ol className={styles.timeline}>
+          {updates.map((update) => (
+            <li key={`${update.date}-${update.title}`}>
+              <p className={styles.timelineDate}>{update.date}</p>
+              <h3>{update.title}</h3>
+              <p>{update.detail}</p>
+            </li>
+          ))}
+        </ol>
       </section>
     </main>
   );
