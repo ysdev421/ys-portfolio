@@ -97,6 +97,35 @@
   line-height: 1.7;
 }
 
+.links {
+  margin-top: 1rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.links li a {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #d9e2ee;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.links li span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #6b7f99;
+}
+
+.links li strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #1d2a3e;
+}
+
 @media (max-width: 600px) {
   .profile {
     flex-direction: column;
