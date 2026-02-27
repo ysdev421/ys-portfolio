@@ -1,7 +1,22 @@
-﻿import { products } from "@/lib/products";
+﻿"use client";
+
+import { useMemo, useState } from "react";
+import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
+type StatusFilter = "all" | "live" | "coming_soon";
+
 export default function ProductsPage() {
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+
+  const filteredProducts = useMemo(
+    () =>
+      products.filter((product) =>
+        statusFilter === "all" ? true : product.status === statusFilter,
+      ),
+    [statusFilter],
+  );
+
   return (
     <main id="main-content" className={styles.page}>
       <header className={styles.header}>
@@ -10,8 +25,32 @@ export default function ProductsPage() {
         <p>運営中のサービスへ直接アクセスできます。</p>
       </header>
 
+      <div className={styles.filters} role="group" aria-label="公開状態フィルタ">
+        <button
+          type="button"
+          onClick={() => setStatusFilter("all")}
+          className={statusFilter === "all" ? styles.activeFilter : ""}
+        >
+          すべて
+        </button>
+        <button
+          type="button"
+          onClick={() => setStatusFilter("live")}
+          className={statusFilter === "live" ? styles.activeFilter : ""}
+        >
+          公開中
+        </button>
+        <button
+          type="button"
+          onClick={() => setStatusFilter("coming_soon")}
+          className={statusFilter === "coming_soon" ? styles.activeFilter : ""}
+        >
+          準備中
+        </button>
+      </div>
+
       <section className={styles.grid}>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <article
             key={product.id}
             className={`${styles.card} ${product.status === "coming_soon" ? styles.cardSoon : ""}`}
