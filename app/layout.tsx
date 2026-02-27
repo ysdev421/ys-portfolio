@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Playfair_Display } from "next/font/google";
+import { Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 
-const notoSansJp = Noto_Sans_JP({
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
   variable: "--font-sans",
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
+const shipporiMincho = Shippori_Mincho({
   variable: "--font-serif",
+  weight: ["500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -25,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJp.variable} ${playfair.variable}`}>
+      <body
+        className={`${zenKakuGothicNew.variable} ${shipporiMincho.variable}`}
+      >
         {children}
       </body>
     </html>
