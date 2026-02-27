@@ -13,6 +13,10 @@ export type Post = {
   updatedAt: string;
   reviewedAt: string;
   readTime: string;
+  author: {
+    name: string;
+    role: string;
+  };
   sections: Section[];
 };
 
@@ -28,6 +32,10 @@ export const posts: Post[] = [
     updatedAt: "2026-02-27",
     reviewedAt: "2026-02-27",
     readTime: "8 min",
+    author: {
+      name: "Yutaro Sato",
+      role: "Editor / Product Designer",
+    },
     sections: [
       {
         heading: "最初に決めるべきこと",
@@ -55,6 +63,10 @@ export const posts: Post[] = [
     updatedAt: "2026-02-24",
     reviewedAt: "2026-02-27",
     readTime: "6 min",
+    author: {
+      name: "Yutaro Sato",
+      role: "Editor / Product Designer",
+    },
     sections: [
       {
         heading: "読みやすさは設計できる",
@@ -75,6 +87,10 @@ export const posts: Post[] = [
     updatedAt: "2026-02-26",
     reviewedAt: "2026-02-27",
     readTime: "7 min",
+    author: {
+      name: "Yutaro Sato",
+      role: "Editor / Product Designer",
+    },
     sections: [
       {
         heading: "静的生成を基本にする",
@@ -95,6 +111,10 @@ export const posts: Post[] = [
     updatedAt: "2026-02-22",
     reviewedAt: "2026-02-27",
     readTime: "9 min",
+    author: {
+      name: "Yutaro Sato",
+      role: "Editor / Product Designer",
+    },
     sections: [
       {
         heading: "MVP前にやる検証",

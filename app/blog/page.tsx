@@ -214,6 +214,9 @@ export default function BlogIndexPage() {
               </div>
               <h2>{post.title}</h2>
               <p>{post.summary}</p>
+              <p className={styles.authorMeta}>
+                {post.author.name} / {post.author.role}
+              </p>
               {post.tags.length > 0 && (
                 <ul className={styles.tags} aria-label="タグ">
                   {post.tags.map((tag) => (

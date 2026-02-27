@@ -114,6 +114,15 @@ export default async function BlogDetailPage({ params }: PageProps) {
         </div>
         <h1>{post.title}</h1>
         <p className={styles.summary}>{post.summary}</p>
+        <div className={styles.authorCard}>
+          <div className={styles.authorAvatar} aria-hidden>
+            {post.author.name.slice(0, 1)}
+          </div>
+          <div>
+            <p className={styles.authorName}>{post.author.name}</p>
+            <p className={styles.authorBio}>{post.author.role}</p>
+          </div>
+        </div>
         <div className={styles.freshness}>
           <p>最終更新: {post.updatedAt}</p>
           <p>最終確認: {post.reviewedAt}</p>

@@ -180,6 +180,12 @@
   min-height: 3.5em;
 }
 
+.authorMeta {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  color: #6b7f99;
+}
+
 .card a {
   display: inline-block;
   margin-top: 0.9rem;
