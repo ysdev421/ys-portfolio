@@ -3,6 +3,11 @@
   paras: string[];
 };
 
+export type Revision = {
+  date: string;
+  note: string;
+};
+
 export type Post = {
   slug: string;
   title: string;
@@ -17,6 +22,7 @@ export type Post = {
     name: string;
     role: string;
   };
+  revisions: Revision[];
   sections: Section[];
 };
 
@@ -36,6 +42,10 @@ export const posts: Post[] = [
       name: "Yutaro Sato",
       role: "Editor / Product Designer",
     },
+    revisions: [
+      { date: "2026-02-27", note: "初版公開。CTA設計と運用設計の章を追加。" },
+      { date: "2026-02-28", note: "導線設計の事例を追記し、表現を改善。" },
+    ],
     sections: [
       {
         heading: "最初に決めるべきこと",
@@ -67,6 +77,10 @@ export const posts: Post[] = [
       name: "Yutaro Sato",
       role: "Editor / Product Designer",
     },
+    revisions: [
+      { date: "2026-02-20", note: "初版公開。可読性の基準値を定義。" },
+      { date: "2026-02-24", note: "行間と余白の推奨値を更新。" },
+    ],
     sections: [
       {
         heading: "読みやすさは設計できる",
@@ -91,6 +105,10 @@ export const posts: Post[] = [
       name: "Yutaro Sato",
       role: "Editor / Product Designer",
     },
+    revisions: [
+      { date: "2026-02-12", note: "初版公開。SSG中心の設計方針を整理。" },
+      { date: "2026-02-26", note: "キャッシュ戦略と運用の注意点を追加。" },
+    ],
     sections: [
       {
         heading: "静的生成を基本にする",
@@ -115,6 +133,10 @@ export const posts: Post[] = [
       name: "Yutaro Sato",
       role: "Editor / Product Designer",
     },
+    revisions: [
+      { date: "2026-02-07", note: "初版公開。MVP前検証の流れを追加。" },
+      { date: "2026-02-22", note: "価格設計フェーズの説明を更新。" },
+    ],
     sections: [
       {
         heading: "MVP前にやる検証",

@@ -65,6 +65,43 @@
   color: #6b7f99;
 }
 
+.revisions {
+  margin-top: 0.9rem;
+  border: 1px solid #d9e2ee;
+  border-radius: 14px;
+  background: #fbfdff;
+  padding: 0.9rem 1rem;
+}
+
+.revisions h2 {
+  font-size: 0.95rem;
+  color: #1d2a3e;
+}
+
+.revisions ul {
+  margin-top: 0.55rem;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.revisions li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.revisions span {
+  font-size: 0.78rem;
+  color: #6b7f99;
+  font-weight: 700;
+}
+
+.revisions p {
+  font-size: 0.88rem;
+  color: #435a74;
+  line-height: 1.65;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

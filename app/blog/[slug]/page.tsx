@@ -127,6 +127,19 @@ export default async function BlogDetailPage({ params }: PageProps) {
           <p>最終更新: {post.updatedAt}</p>
           <p>最終確認: {post.reviewedAt}</p>
         </div>
+        {post.revisions.length > 0 && (
+          <section className={styles.revisions} aria-label="更新履歴">
+            <h2>更新履歴</h2>
+            <ul>
+              {post.revisions.map((revision) => (
+                <li key={`${revision.date}-${revision.note}`}>
+                  <span>{revision.date}</span>
+                  <p>{revision.note}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {post.tags.length > 0 && (
           <ul className={styles.tags} aria-label="タグ">
             {post.tags.map((tag) => (
