@@ -64,6 +64,7 @@ export default function RootLayout({
           <nav className="site-nav">
             <Link href="/blog">Blog</Link>
             <Link href="/products">SaaS</Link>
+            <Link href="/game">Game</Link>
             <Link href="/about">About</Link>
           </nav>
         </header>
@@ -73,6 +74,7 @@ export default function RootLayout({
           <nav className="footer-nav" aria-label="フッターナビゲーション">
             <Link href="/blog">Blog</Link>
             <Link href="/products">SaaS</Link>
+            <Link href="/game">Game</Link>
             <Link href="/about">About</Link>
             <a href="/feed.xml" aria-label="RSSフィード">RSS</a>
           </nav>
