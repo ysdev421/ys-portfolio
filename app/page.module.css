@@ -187,49 +187,6 @@
   color: #4b5c73;
 }
 
-.newsletter {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.2rem;
-  background: linear-gradient(140deg, rgba(10, 23, 51, 0.97), rgba(18, 58, 96, 0.92));
-  border-radius: 20px;
-  padding: 2rem;
-  color: #eef5ff;
-}
-
-.newsletter h2 {
-  font-family: var(--font-serif), serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
-  color: #eef5ff;
-}
-
-.newsletter p {
-  margin-top: 0.5rem;
-  color: rgba(238, 245, 255, 0.8);
-  line-height: 1.7;
-  max-width: 46ch;
-}
-
-.newsletterBtn {
-  flex-shrink: 0;
-  display: inline-block;
-  background: #d9b171;
-  color: #17253f;
-  font-weight: 700;
-  border-radius: 999px;
-  padding: 0.75rem 1.4rem;
-  transition: transform 220ms ease, box-shadow 220ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .newsletterBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  }
-}
-
 .products h2 {
   font-family: var(--font-serif), serif;
   font-size: clamp(1.6rem, 2.8vw, 2.2rem);

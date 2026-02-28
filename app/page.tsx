@@ -1,5 +1,4 @@
 ﻿import Link from "next/link";
-import { getNewsletterHref } from "@/lib/newsletter";
 import { products } from "@/lib/products";
 import { getPosts } from "@/lib/posts";
 import styles from "./page.module.css";
@@ -71,15 +70,6 @@ export default function Home() {
         </p>
       </section>
 
-      <section className={styles.newsletter}>
-        <div>
-          <h2>更新情報を受け取る</h2>
-          <p>デザイン・エンジニアリング・SaaSに関する新着記事をメールでお知らせします。</p>
-        </div>
-        <a href={getNewsletterHref()} className={styles.newsletterBtn}>
-          購読を申し込む
-        </a>
-      </section>
 
       <section className={styles.products} id="products">
         <h2>SaaS</h2>

@@ -1,6 +1,17 @@
 import { getPosts } from "@/lib/posts";
 
 const BASE_URL = "https://ys-portfolio.vercel.app";
+const SITE_DESCRIPTION =
+  "デザインと実務知見を両立し、企業サイト品質を目指すブログ。";
+
+function escapeXml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 export async function GET() {
   const posts = getPosts();
@@ -9,11 +20,11 @@ export async function GET() {
     .map(
       (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
+      <title>${escapeXml(post.title)}</title>
       <link>${BASE_URL}/blog/${post.slug}</link>
       <guid isPermaLink="true">${BASE_URL}/blog/${post.slug}</guid>
-      <description><![CDATA[${post.summary}]]></description>
-      <category>${post.category}</category>
+      <description>${escapeXml(post.summary)}</description>
+      <category>${escapeXml(post.category)}</category>
       <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
     </item>`,
     )
@@ -24,7 +35,7 @@ export async function GET() {
   <channel>
     <title>YS Journal</title>
     <link>${BASE_URL}</link>
-    <description>美しいデザインと実務的な知見を両立し、企業サイト品質を目指すブログ。</description>
+    <description>${escapeXml(SITE_DESCRIPTION)}</description>
     <language>ja</language>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
     ${items}

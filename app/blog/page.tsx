@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { getPosts } from "@/lib/posts";
-import { getNewsletterMailto } from "@/lib/newsletter";
 import { recommendations } from "@/lib/recommendations";
 import styles from "./page.module.css";
 
@@ -34,18 +33,17 @@ function initialArchiveFromUrl() {
 }
 
 function initialQueryFromUrl() {
-  return getSearchParams().get("tag") ?? "";
+  const params = getSearchParams();
+  return params.get("q") ?? params.get("tag") ?? "";
 }
 
 export default function BlogIndexPage() {
   const posts = getPosts();
-  const newsletterUrl = process.env.NEXT_PUBLIC_NEWSLETTER_URL;
   const [activeCategory, setActiveCategory] = useState<Category>(
     initialCategoryFromUrl,
   );
   const [queryInput, setQueryInput] = useState(initialQueryFromUrl);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQueryFromUrl);
-  const [email, setEmail] = useState("");
   const [sortBy, setSortBy] = useState<SortBy>(initialSortFromUrl);
   const [archive, setArchive] = useState(initialArchiveFromUrl);
 
@@ -68,8 +66,10 @@ export default function BlogIndexPage() {
     const url = new URL(window.location.href);
 
     if (debouncedQuery.trim()) {
-      url.searchParams.set("tag", debouncedQuery.trim());
+      url.searchParams.set("q", debouncedQuery.trim());
+      url.searchParams.delete("tag");
     } else {
+      url.searchParams.delete("q");
       url.searchParams.delete("tag");
     }
 
@@ -123,19 +123,6 @@ export default function BlogIndexPage() {
     });
   }, [posts, activeCategory, debouncedQuery, sortBy, archive]);
 
-  function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!email.trim()) {
-      return;
-    }
-    if (newsletterUrl) {
-      const url = new URL(newsletterUrl);
-      url.searchParams.set("email", email.trim());
-      window.location.href = url.toString();
-      return;
-    }
-    window.location.href = getNewsletterMailto(email.trim());
-  }
 
   return (
     <main id="main-content" className={styles.page}>
@@ -236,21 +223,6 @@ export default function BlogIndexPage() {
         )}
       </section>
 
-      <section className={styles.subscribe}>
-        <h2>更新をメールで受け取る</h2>
-        <p>新しい記事と改善ログを配信します。</p>
-        <form onSubmit={handleSubscribe} className={styles.subscribeForm}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            aria-label="メールアドレス"
-            required
-          />
-          <button type="submit">購読する</button>
-        </form>
-      </section>
 
       <section className={styles.recommend}>
         <h2>Recommended Reads</h2>

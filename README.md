@@ -18,14 +18,6 @@ npm run build
 npm run start
 ```
 
-## 購読導線（任意）
-
-外部ニュースレターに接続する場合は、`.env.local` に次を設定します。
-
-```bash
-NEXT_PUBLIC_NEWSLETTER_URL=https://your-newsletter-service.example/subscribe
-```
-
 ## アクセス解析（任意）
 
 GA4を有効化する場合は、`.env.local` に次を設定します。

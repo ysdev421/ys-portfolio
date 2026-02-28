@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getNewsletterHref } from "@/lib/newsletter";
 import {
   getNextReads,
   getPostBySlug,
@@ -74,8 +73,19 @@ export default async function BlogDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    datePublished: post.publishedAt,
     description: post.summary,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    mainEntityOfPage: `https://ys-portfolio.vercel.app/blog/${post.slug}`,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "YS Journal",
+      url: "https://ys-portfolio.vercel.app",
+    },
     keywords: post.tags.join(", "),
   };
 
@@ -144,7 +154,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
           <ul className={styles.tags} aria-label="タグ">
             {post.tags.map((tag) => (
               <li key={tag}>
-                <Link href={`/blog?tag=${encodeURIComponent(tag)}`} className={styles.tag}>
+                <Link href={`/blog?q=${encodeURIComponent(tag)}`} className={styles.tag}>
                   {tag}
                 </Link>
               </li>
@@ -181,9 +191,6 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <Link href="/products" className={styles.postCtaPrimary}>
               SaaS一覧を見る
             </Link>
-            <a href={getNewsletterHref()} className={styles.postCtaSecondary}>
-              更新を購読する
-            </a>
           </div>
         </section>
         {related.length > 0 && (
@@ -214,3 +221,4 @@ export default async function BlogDetailPage({ params }: PageProps) {
     </main>
   );
 }
+

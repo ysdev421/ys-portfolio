@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { getNewsletterHref } from "@/lib/newsletter";
 import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
@@ -9,7 +8,6 @@ type StatusFilter = "all" | "live" | "coming_soon";
 
 export default function ProductsPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
-  const newsletterHref = getNewsletterHref();
   const liveCount = products.filter((product) => product.status === "live").length;
   const soonCount = products.length - liveCount;
   const itemListLd = {
@@ -98,7 +96,6 @@ export default function ProductsPage() {
               ) : (
                 <div className={styles.comingSoon}>
                   <span>近日公開予定</span>
-                  <a href={newsletterHref}>公開通知を受け取る</a>
                 </div>
               )}
             </article>
