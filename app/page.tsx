@@ -26,6 +26,9 @@ export default function Home() {
           <Link href="/blog" className={styles.primary}>
             最新記事を見る
           </Link>
+          <Link href="/game" className={styles.secondary}>
+            ゲームで遊ぶ
+          </Link>
           <Link href="/products" className={styles.secondary}>
             SaaS一覧
           </Link>
