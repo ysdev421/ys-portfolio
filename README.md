@@ -26,6 +26,18 @@ GA4を有効化する場合は、`.env.local` に次を設定します。
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
+## コメント機能（任意）
+
+Giscus を有効化する場合は、`.env.local` に次を設定します。
+
+```bash
+NEXT_PUBLIC_GISCUS_REPO=owner/repo
+NEXT_PUBLIC_GISCUS_REPO_ID=R_XXXXXXXXXXXX
+NEXT_PUBLIC_GISCUS_CATEGORY=General
+NEXT_PUBLIC_GISCUS_CATEGORY_ID=DIC_kwXXXXXXXXXXXX
+NEXT_PUBLIC_GISCUS_MAPPING=specific
+```
+
 ## 主な構成
 
 - `app/`: ルーティングとページ

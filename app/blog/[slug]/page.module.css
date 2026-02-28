@@ -307,6 +307,18 @@
   font-weight: 600;
 }
 
+.comments {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #d9e2ee;
+}
+
+.comments h2 {
+  font-size: 1.05rem;
+  color: #1d2a3e;
+  margin-bottom: 0.7rem;
+}
+
 .authorCard {
   display: flex;
   gap: 1.2rem;

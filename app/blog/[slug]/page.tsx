@@ -8,6 +8,7 @@ import {
   getRelatedPosts,
 } from "@/lib/posts";
 import { ReadingProgress } from "./ReadingProgress";
+import { Comments } from "./Comments";
 import { ShareButton } from "./ShareButton";
 import { ScrollTop } from "./ScrollTop";
 import { TocNav } from "./TocNav";
@@ -68,6 +69,11 @@ export default async function BlogDetailPage({ params }: PageProps) {
     related.map((item) => item.slug),
     3,
   );
+  const hasGiscusConfig =
+    !!process.env.NEXT_PUBLIC_GISCUS_REPO &&
+    !!process.env.NEXT_PUBLIC_GISCUS_REPO_ID &&
+    !!process.env.NEXT_PUBLIC_GISCUS_CATEGORY &&
+    !!process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -215,6 +221,12 @@ export default async function BlogDetailPage({ params }: PageProps) {
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+        {hasGiscusConfig && (
+          <section className={styles.comments} aria-label="コメント">
+            <h2>コメント</h2>
+            <Comments term={post.slug} />
           </section>
         )}
       </article>
