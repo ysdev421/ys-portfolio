@@ -1,13 +1,27 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from "@/lib/products";
 import styles from "./page.module.css";
 
 type StatusFilter = "all" | "live" | "coming_soon";
 
+function getSearchParams() {
+  if (typeof window === "undefined") {
+    return new URLSearchParams();
+  }
+  return new URLSearchParams(window.location.search);
+}
+
+function initialStatusFilterFromUrl(): StatusFilter {
+  const value = getSearchParams().get("status");
+  return value === "live" || value === "coming_soon" ? value : "all";
+}
+
 export default function ProductsPage() {
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>(
+    initialStatusFilterFromUrl,
+  );
   const liveCount = products.filter((product) => product.status === "live").length;
   const soonCount = products.length - liveCount;
   const itemListLd = {
@@ -32,6 +46,19 @@ export default function ProductsPage() {
     statusFilter === "all" ? true : product.status === statusFilter,
   );
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (statusFilter === "all") {
+      url.searchParams.delete("status");
+    } else {
+      url.searchParams.set("status", statusFilter);
+    }
+    window.history.replaceState({}, "", url.toString());
+  }, [statusFilter]);
+
   return (
     <main id="main-content" className={styles.page}>
       <script
@@ -50,6 +77,7 @@ export default function ProductsPage() {
       <div className={styles.filters} role="group" aria-label="公開状態フィルタ">
         <button
           type="button"
+          aria-pressed={statusFilter === "all"}
           onClick={() => setStatusFilter("all")}
           className={statusFilter === "all" ? styles.activeFilter : ""}
         >
@@ -57,6 +85,7 @@ export default function ProductsPage() {
         </button>
         <button
           type="button"
+          aria-pressed={statusFilter === "live"}
           onClick={() => setStatusFilter("live")}
           className={statusFilter === "live" ? styles.activeFilter : ""}
         >
@@ -64,6 +93,7 @@ export default function ProductsPage() {
         </button>
         <button
           type="button"
+          aria-pressed={statusFilter === "coming_soon"}
           onClick={() => setStatusFilter("coming_soon")}
           className={statusFilter === "coming_soon" ? styles.activeFilter : ""}
         >
