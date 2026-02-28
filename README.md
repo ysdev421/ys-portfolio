@@ -38,6 +38,14 @@ NEXT_PUBLIC_GISCUS_CATEGORY_ID=DIC_kwXXXXXXXXXXXX
 NEXT_PUBLIC_GISCUS_MAPPING=specific
 ```
 
+## 支援リンク（任意）
+
+記事末尾に支援ボタンを表示する場合は、`.env.local` に次を設定します。
+
+```bash
+NEXT_PUBLIC_SUPPORT_URL=https://buymeacoffee.com/yourname
+```
+
 ## 主な構成
 
 - `app/`: ルーティングとページ

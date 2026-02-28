@@ -74,6 +74,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
     !!process.env.NEXT_PUBLIC_GISCUS_REPO_ID &&
     !!process.env.NEXT_PUBLIC_GISCUS_CATEGORY &&
     !!process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID;
+  const supportUrl = process.env.NEXT_PUBLIC_SUPPORT_URL?.trim();
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -197,6 +198,16 @@ export default async function BlogDetailPage({ params }: PageProps) {
             <Link href="/products" className={styles.postCtaPrimary}>
               SaaS一覧を見る
             </Link>
+            {supportUrl && (
+              <a
+                href={supportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.postCtaSecondary}
+              >
+                活動を支援する
+              </a>
+            )}
           </div>
         </section>
         {related.length > 0 && (
